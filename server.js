@@ -26,6 +26,12 @@ app.use(express.urlencoded({ extended: false }));
 //HTTP request logger
 app.use(morgan('tiny'));
 app.use('/api', routes);
+app.use(express.static(path.join(__dirname, "./client/public/uploads/")));
+
+
+app.get("/",(req,res)=>{
+   return res.send("<p>hello!</p>");
+});
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'));
