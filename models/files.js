@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 
+//Schema
 const Schema = mongoose.Schema;
 const FileSchema = new Schema({
-    meta_data:{}
-});
+     fileLocation: {},
+ });
 
-const File = mongoose.model("File",FileSchema);
-module.exports = File;
+ //Model
+ const File = mongoose.model("Files",FileSchema);
+ 
+ module.exports = File;
