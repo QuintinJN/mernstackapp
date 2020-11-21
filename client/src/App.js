@@ -12,9 +12,9 @@ class App extends React.Component {
   render() {
     //JSX
     return (
-      <div className="app">
+      <div className="container mt-4">
         <Header />
-        <Login />
+        <Login /> 
         <FileUpload />
       </div>
     );

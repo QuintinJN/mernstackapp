@@ -6,20 +6,20 @@ class Login extends Component {
         username: '',
         password: ''
     };
-    
+
     handleChange = ({ target }) => {
         const { name, value } = target;
         this.setState({ [name]: value });
     };
-    
+
     submit = (event) => {
         event.preventDefault();
-    
+
         const payload = {
             username: this.state.username,
             password: this.state.password
         };
-    
+
         axios({
             url: '/api/save',
             method: 'POST',
@@ -33,7 +33,7 @@ class Login extends Component {
                 console.log('Internal server error');
             });
     };
-    
+
     resetUserInputs = () => {
         this.setState({
             username: '',
@@ -63,7 +63,11 @@ class Login extends Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                    <button>Submit</button>
+                    <input
+                        type='submit'
+                        value='Sign Up'
+                        className='btn btn-primary btn-block mt-4'
+                    />
                 </form>
             </div>
         );

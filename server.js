@@ -9,8 +9,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const fs = require('fs');
 const readline = require('readline');
+const fileUpload = require('express-fileupload');
 
 const routes = require('./routes/api');
+
 
 
 const MONGODB_URI = 'mongodb+srv://QuintinNel:quintin123@cluster0.ds92k.mongodb.net/<dbname>?retryWrites=true&w=majority';
@@ -35,10 +37,13 @@ app.use('/api', routes);
 //app.use(express.static('public'));
 
 
-app.use('/ftp', express.static('public'), serveIndex('public', {'icons': true}));
+//app.use('/ftp', express.static('public'), serveIndex('public', {'icons': true}));
 
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'));
 }
+
+
+
 app.listen(PORT, console.log(`server is starting at ${PORT}`));

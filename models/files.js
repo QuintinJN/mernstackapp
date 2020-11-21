@@ -7,6 +7,6 @@ const FileSchema = new Schema({
  });
 
  //Model
- const File = mongoose.model("Files",FileSchema);
+ const newFile = mongoose.model("File",FileSchema);
  
- module.exports = File;
+ module.exports = newFile;
