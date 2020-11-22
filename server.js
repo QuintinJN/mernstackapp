@@ -1,15 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const path = require('path');
-const serveIndex = require('serve-index')
-const multer = require("multer");
-const util = require('util')
 const app = express();
 const PORT = process.env.PORT || 5000;
-const fs = require('fs');
-const readline = require('readline');
-const fileUpload = require('express-fileupload');
+
 
 const routes = require('./routes/api');
 
@@ -43,7 +37,5 @@ app.use('/api', routes);
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'));
 }
-
-
 
 app.listen(PORT, console.log(`server is starting at ${PORT}`));

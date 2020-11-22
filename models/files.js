@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 //Schema
 const Schema = mongoose.Schema;
 const FileSchema = new Schema({
-     fileLocation: {},
+     idNumber: Boolean
  });
 
  //Model
