@@ -28,10 +28,6 @@ app.use(express.urlencoded({ extended: false }));
 //HTTP request logger
 app.use(morgan('tiny'));
 app.use('/api', routes);
-//app.use(express.static('public'));
-
-
-//app.use('/ftp', express.static('public'), serveIndex('public', {'icons': true}));
 
 
 if(process.env.NODE_ENV === 'production'){

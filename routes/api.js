@@ -1,12 +1,8 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const router = express.Router();
-const multer = require("multer");
-const path = require('path');
-const debug = require('debug')('myapp:server');
 const fs = require('fs');
 const readline = require('readline');
-const util = require('util');
 const newFile = require('../models/files');
 const User = require('../models/users');
 const { object } = require('prop-types');
@@ -51,7 +47,7 @@ async function processLineByLine(fileName) {
         tempID = true;
       }
       if (testPhoneNumber(test)) {
-        console.log('Contains a Cell phone  number');
+        console.log('Contains a Cell phone number');
         tempCell = true;
       }
     }
