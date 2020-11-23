@@ -11,7 +11,7 @@ const newFile = require('../models/files');
 const User = require('../models/users');
 const { object } = require('prop-types');
 const { text } = require('express');
-const { getMaxListeners } = require('../models/files');
+const { getMaxListeners, db } = require('../models/files');
 
 
 //Get every user
@@ -35,24 +35,33 @@ async function processLineByLine(fileName) {
     input: fileStream,
     crlfDelay: Infinity
   });
-
+  var tempEmail = false;
+  var tempCell = false;
+  var tempID = false;
   for await (const line of rl) {
-    const myData = [];
-
     //console.log(`${line}`);
     const test = line;
-    if (isEmail(test))
+    if (isEmail(test)) {
       console.log('Contains an Email');
+      tempEmail = true;
+    }
     if (hasNumber(test)) {
-      if (extractFromID(test)){
+      if (extractFromID(test)) {
         console.log('Contains an ID');
+        tempID = true;
       }
-      if (testPhoneNumber(test)){
+      if (testPhoneNumber(test)) {
         console.log('Contains a Cell phone  number');
+        tempCell = true;
       }
     }
-
   }
+  const sampleFile = new newFile({
+    "idNumber": tempID,
+    "email": tempEmail,
+    "cellNumber": tempCell
+  })
+  sampleFile.save();
 }
 
 function hasNumber(myString) {
@@ -144,6 +153,12 @@ router.post('/upload', async (req, res) => {
     res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
   });
   processLineByLine(file.name);
+});
+
+router.post('/file', (req, res) => {
+  newFile.create(req.body).then(function (File) {
+    res.send(File);
+  });
 });
 
 module.exports = router;
